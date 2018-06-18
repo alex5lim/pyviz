@@ -16,5 +16,5 @@ pyplot.tick_params(axis='both', which='major', labelsize=8)
 # Set the range for each axis
 pyplot.axis([0, 6000, 0, 135000000000])
 
-# Save the plot to a file named squares_plot.png 
+# Save the plot to a file named squares_plot.png
 pyplot.savefig('squares_plot.png', bbox_inches='tight')
