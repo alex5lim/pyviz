@@ -49,8 +49,8 @@ histogram.title = "Results of rolling dice 1000 times"
 histogram.x_labels = map(str, range(1, d1.num_sides + d2.num_sides + 1))
 histogram.x_title = "Result"
 histogram.y_title = "Frequency of result"
-histogram.add("D6_1", d1_frequency)
-histogram.add("D6_2", d2_frequency)
+histogram.add("Dice-1(size={0})".format(d1.num_sides), d1_frequency)
+histogram.add("Dice-2(size={0})".format(d2.num_sides), d2_frequency)
 histogram.add("Combined", combined_frequency)
 
 # Create filename
