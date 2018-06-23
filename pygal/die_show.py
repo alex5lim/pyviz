@@ -1,30 +1,35 @@
 import pygal
+from datetime import datetime
 
 from die import Die
 
 
-# Create a D6
+# Create a D6 die
 die = Die()
 
-# Make some rolls, and store result in a list
+# Roll the die and save the results
 results = []
 for roll_num in range(1000):
-    result = die.roll()
-    results.append(result)
+    results.append(die.roll())
 
-# Analyse the results.
-frequencies = []
+# Count the freqency of each result
+frequency = []
 for value in range(1, die.num_sides+1):
-    frequency = results.count(value)
-    frequencies.append(frequency)
+    frequency.append(results.count(value))
 
-# Visualise the results.
-hist = pygal.Bar()
+# Create dice roll histogram
+histogram = pygal.Bar()
+histogram.title = "Results of rolling dice 1000 times"
+histogram.x_labels = ['1', '2', '3', '4', '5', '6']
+histogram.x_title = "Result"
+histogram.y_label = "Frequency of result"
+histogram.add('D6', frequency)
 
-hist.title = "Results of rolling one D6 1000 times."
-hist.x_label = ['1', '2', '3', '4', '5', '6']
-hist.x_title = "Result"
-hist.y_title = "Frequency of Result"
+# Generate filename
+filename = 'dice_roll_histogram_'
+filename += datetime.now().strftime('%Y%m%d-%H%M%S')
+filename += '.svg'
 
-hist.add('D6', frequencies)
-hist.render_to_file('die_visual.svg')
+# Render histogram and save it to a file
+print('Render results to ' + filename)
+histogram.render_to_file(filename)
