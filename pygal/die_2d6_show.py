@@ -6,8 +6,8 @@ from die import Die
 
 
 # Create two D6 dice
-d1 = Die()
-d2 = Die()
+d1 = Die(int(input("First dice size = ")))
+d2 = Die(int(input("Second dice size = ")))
 
 # Roll the dice and save the results
 d1_results = []
@@ -46,7 +46,7 @@ combined_frequency.insert(0, None)
 # Create histogram
 histogram = pygal.Bar()
 histogram.title = "Results of rolling dice 1000 times"
-histogram.x_labels = map(str, range(1, 13))
+histogram.x_labels = map(str, range(1, d1.num_sides + d2.num_sides + 1))
 histogram.x_title = "Result"
 histogram.y_title = "Frequency of result"
 histogram.add("D6_1", d1_frequency)
