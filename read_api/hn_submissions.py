@@ -4,7 +4,11 @@ from operator import itemgetter
 # Make an API call and store the response
 url = "https://hacker-news.firebaseio.com/v0/topstories.json"
 r = requests.get(url)
-print("Status code: ", r.status_code)
+if r.status_code == 200:
+    print("Processing")
+else:
+    print("Error", r.status_code)
+    exit(1)
 
 # Process information about each submission
 submission_ids = r.json()
@@ -13,7 +17,8 @@ submission_dicts = []
 for id in submission_ids[:30]:
     url = "https://hacker-news.firebaseio.com/v0/item/" + str(id) + ".json"
     r = requests.get(url)
-    print(r.status_code)
+    if r.status_code != 200:
+        print("Error: ", r.status_code)
     submission_item = r.json()
     submission_dict = {
        'title': submission_item['title'],
